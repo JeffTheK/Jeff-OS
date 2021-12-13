@@ -16,10 +16,10 @@ help       - prints this message
 def run_app(path):
     file = open(path)
     text = file.read()
-    if text.startswith("#\!python"):
+    if text.startswith("#!python"):
         exec(text)
     else:
-        print()
+        print("can't run")
 
 def main():
     i = ""
