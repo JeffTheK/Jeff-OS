@@ -2,11 +2,11 @@
 
 import os
 
-def run_app(path):
+def run_app(path, args):
     file = open(path)
     text = file.read()
     if text.startswith("#!python"):
-        os.system("python "+path)
+        os.system("python "+path+" "+args)
     else:
         print("can't run")
 
@@ -17,8 +17,11 @@ def main():
     i = ""
     while i != "exit" or i != "quit":
         i = input("cmd>")
-        if os.path.isfile("sys/bin/"+i):
-            run_app("sys/bin/"+i)
+        args = i.split(" ")
+        app_name = args[0]
+        if os.path.isfile("sys/bin/"+app_name):
+            args = " ".join(args)
+            run_app("sys/bin/"+app_name, args)
         else:
             print(f"app '{i}' not found")
 
