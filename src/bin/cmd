@@ -21,6 +21,9 @@ def main():
     print("type help for basic info")
 
     os.chdir("Jeff-OS/")
+    sys.path.pop(0)
+    sys.path.insert("/sys/lib/")
+
     i = ""
     while i != "exit" or i != "quit":
         i = input("cmd>")
