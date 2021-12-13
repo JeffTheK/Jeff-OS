@@ -17,8 +17,8 @@ def main():
     i = ""
     while i != "exit" or i != "quit":
         i = input("cmd>")
-        if os.path.isfile("Jeff-OS/sys/bin/"+i):
-            run_app("Jeff-OS/sys/bin/"+i)
+        if os.path.isfile("sys/bin/"+i):
+            run_app("sys/bin/"+i)
         else:
             print(f"app '{i}' not found")
 
