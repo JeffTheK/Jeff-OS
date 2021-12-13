@@ -1,12 +1,15 @@
 #!python
 
 import os
+import sys
 
 def run_app(path, args):
     file = open(path)
     text = file.read()
+    sys.argv = args
+    args.insert(0, "")
     if text.startswith("#!python"):
-        os.system("python "+path+" "+args)
+        exec(text)
     else:
         print("can't run")
 
@@ -20,7 +23,6 @@ def main():
         args = i.split(" ")
         app_name = args[0]
         if os.path.isfile("sys/bin/"+app_name):
-            args = " ".join(args)
             run_app("sys/bin/"+app_name, args)
         else:
             print(f"app '{i}' not found")
