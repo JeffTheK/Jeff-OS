@@ -1,0 +1,11 @@
+#!python
+
+import os
+
+def main():
+    stuff = os.listdir(os.getcwd())
+    for s in stuff:
+        print(s)
+
+if __name__ == "__main__":
+    main()
