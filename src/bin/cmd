@@ -6,7 +6,7 @@ def run_app(path):
     file = open(path)
     text = file.read()
     if text.startswith("#!python"):
-        exec(text)
+        os.system("python "+path)
     else:
         print("can't run")
 
