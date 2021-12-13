@@ -18,6 +18,7 @@ def install():
 
     print("installing libraries")
     shutil.copytree("src/lib", "Jeff-OS/sys/lib")
+    os.system("cd Jeff-OS/sys/lib/ && pip install .")
 
     print("installing vars")
     os.mkdir("Jeff-OS/sys/var")

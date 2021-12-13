@@ -3,18 +3,11 @@
 import os
 import sys
 
-os_path = ""
-current_dir = ""
-
-OS_PATH = "NULL"
-
 def run_app(path, args):
     file = open(path)
     text = file.read()
-    sys.argv = args
-    args.insert(0, "")
     if text.startswith("#!python"):
-        exec(text)
+        os.system("python "+path+" "+args)
     else:
         print("can't run")
 
@@ -33,6 +26,7 @@ def main():
         i = input("cmd>")
         args = i.split(" ")
         app_name = args[0]
+        args = " ".join(args)
         if os.path.isfile(OS_PATH+"/sys/bin/"+app_name):
             run_app(OS_PATH+"/sys/bin/"+app_name, args)
         else:
