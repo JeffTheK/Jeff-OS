@@ -16,6 +16,9 @@ def install():
     print("installing default programs")
     shutil.copytree("src/bin", "Jeff-OS/sys/bin")
 
+    print("installing libraries")
+    shutil.copytree("src/lib", "Jeff-OS/sys/lib")
+
     print("installing vars")
     os.mkdir("Jeff-OS/sys/var")
     os_name = "Jeff-OS"
