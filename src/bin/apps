@@ -1,0 +1,11 @@
+#!python
+
+import os
+
+def main():
+    apps = os.listdir("Jeff-OS/sys/bin/") 
+    for app in apps:
+        print(app)
+
+if __name__ == "__main__":
+    main()
