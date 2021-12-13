@@ -22,7 +22,7 @@ def main():
 
     os.chdir("Jeff-OS/")
     sys.path.pop(0)
-    sys.path.insert("/sys/lib/")
+    sys.path.insert(0, "/sys/lib/")
 
     i = ""
     while i != "exit" or i != "quit":
