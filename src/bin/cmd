@@ -6,7 +6,7 @@ import sys
 os_path = ""
 current_dir = ""
 
-OS_PATH = "HAIII"
+OS_PATH = "NULL"
 
 def run_app(path, args):
     file = open(path)
