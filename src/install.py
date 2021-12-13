@@ -12,5 +12,8 @@ def install():
     os.mkdir("Jeff-OS/sys")
     os.mkdir("Jeff-OS/usr")
 
+    print("installing default programs")
+    shutil.copytree("src/bin", "Jeff-OS/sys/bin")
+
 if __name__ == "__main__":
     install()
