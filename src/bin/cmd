@@ -1,0 +1,37 @@
+#!python
+
+import os
+
+help_text = """
+Any INPUT you will type will attempt to
+launch a program named INPUT located in /sys/bin/.
+
+
+You can also use the terminal own comands listed below:
+
+exit, quit - terminates the program
+help       - prints this message
+"""
+
+def run_app(path):
+    file = open(path)
+    text = file.read()
+    if text.startswith("#\!python"):
+        exec(text)
+    else:
+        print()
+
+def main():
+    i = ""
+    while i != "exit" or i != "quit":
+        i = input("cmd>")
+        if i == "help":
+            print(help_text)
+        else:
+            if os.path.isfile("Jeff-OS/sys/bin/"+i):
+                run_app("Jeff-OS/sys/bin/"+i)
+            else:
+                print(f"app '{i}' not found")
+
+if __name__ == "__main__":
+    main()
