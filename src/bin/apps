@@ -3,7 +3,7 @@
 import os
 
 def main():
-    apps = os.listdir("sys/bin/") 
+    apps = os.listdir(OS_PATH+"/sys/bin/") 
     for app in apps:
         print(app)
 

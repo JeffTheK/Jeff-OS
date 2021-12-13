@@ -6,6 +6,8 @@ import sys
 os_path = ""
 current_dir = ""
 
+OS_PATH = "HAIII"
+
 def run_app(path, args):
     file = open(path)
     text = file.read()
@@ -23,6 +25,8 @@ def main():
     os.chdir("Jeff-OS/")
     sys.path.pop(0)
     sys.path.insert(0, os.getcwd()+"/sys/lib/")
+    global OS_PATH
+    OS_PATH = os.getcwd()
 
     i = ""
     while i != "exit" or i != "quit":
