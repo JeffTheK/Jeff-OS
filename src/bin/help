@@ -5,10 +5,13 @@ Any INPUT you will type will attempt to
 launch a program named INPUT located in /sys/bin/.
 Even help is a program.
 
+Basic programs to get started:
+    apps - prints all installed apps
+    ls - lists files in current directory
+
 You can also use the terminal own comands listed below:
 
 exit, quit - terminates the program
-help       - prints this message
 """
 
 def main():
