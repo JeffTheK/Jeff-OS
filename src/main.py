@@ -8,7 +8,6 @@ def boot():
     
     # run command line
     file = open("Jeff-OS/sys/bin/cmd")
-    os.chdir("Jeff-OS/")
     exec(file.read(), globals())
 
 if __name__ == "__main__":

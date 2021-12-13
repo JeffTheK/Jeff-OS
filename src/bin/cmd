@@ -3,6 +3,9 @@
 import os
 import sys
 
+os_path = ""
+current_dir = ""
+
 def run_app(path, args):
     file = open(path)
     text = file.read()
@@ -17,6 +20,7 @@ def main():
     print("launching command line")
     print("type help for basic info")
 
+    os.chdir("Jeff-OS/")
     i = ""
     while i != "exit" or i != "quit":
         i = input("cmd>")
