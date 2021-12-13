@@ -4,8 +4,16 @@ import os
 import sys
 
 def main():
+    if len(sys.argv) != 3:
+        print("wrong number of arguments")
+        return
+    
     path = sys.argv[2] 
-    os.chdir(path)
+    if os.path.isdir(path) or path == "../":
+        os.chdir(path)
+    else:
+        print("wrong path")
+        return
 
 if __name__ == "__main__":
     main()
