@@ -1,0 +1,19 @@
+#!python
+
+help_text = """
+Any INPUT you will type will attempt to
+launch a program named INPUT located in /sys/bin/.
+Even help is a program.
+
+You can also use the terminal own comands listed below:
+
+exit, quit - terminates the program
+help       - prints this message
+"""
+
+def main():
+    global help_text
+    print(help_text)
+
+if __name__ == "__main__":
+    main()
