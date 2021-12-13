@@ -1,0 +1,15 @@
+#!python
+
+import os
+import sys
+import jeffos
+
+def main():
+    print("this made was made for python testing")
+    print("working dir:", os.getcwd())
+    print("argv")
+    print(sys.argv)
+    print("OS_PATH:", jeffos.OS_PATH)
+
+if __name__ == "__main__":
+    main()
