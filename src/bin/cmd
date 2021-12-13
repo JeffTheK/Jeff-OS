@@ -11,6 +11,9 @@ def run_app(path):
         print("can't run")
 
 def main():
+    print("launching command line")
+    print("type help for basic info")
+
     i = ""
     while i != "exit" or i != "quit":
         i = input("cmd>")
