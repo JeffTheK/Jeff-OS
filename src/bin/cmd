@@ -3,6 +3,7 @@
 import os
 import sys
 import jeffos
+from datetime import datetime
 
 def run_app(path, args):
     file = open(path)
@@ -18,6 +19,9 @@ def main():
     print("launching command line")
     print("type help for basic info")
 
+    history = open(jeffos.OS_PATH+"usr/cmd_history.txt", "a")
+    history.write("starting session "+datetime.now().strftime("%d-%m-%Y %H:%M")+"\n")
+
     os.chdir("Jeff-OS/")
     sys.path.pop(0)
     sys.path.insert(0, os.getcwd()+"/sys/lib/")
@@ -25,15 +29,23 @@ def main():
     OS_PATH = os.getcwd()
 
     i = ""
-    while i != "exit" or i != "quit":
+    while True:
         i = input("cmd>")
         args = i.split(" ")
         app_name = args[0]
         args = " ".join(args)
+
+        history.write(i+"\n")
+
         if os.path.isfile(OS_PATH+"/sys/bin/"+app_name):
             run_app(OS_PATH+"/sys/bin/"+app_name, args)
+        elif i == "exit" or i == "quit":
+            break
         else:
             print(f"app '{i}' not found")
+
+    print("closing terminal")
+    history.close()
 
 if __name__ == "__main__":
     main()
