@@ -32,5 +32,9 @@ def install():
     sys_cfg.write(build_time + "\n")
     sys_cfg.close()
 
+    cmd_cfg = open("Jeff-OS/sys/var/cmd.cfg", 'w')
+    cmd_cfg.write(actual_os_dir)
+    cmd_cfg.close()
+
 if __name__ == "__main__":
     install()

@@ -1,9 +1,10 @@
 #!python
 
 import os
+import jeffos
 
 def main():
-    apps = os.listdir(OS_PATH+"/sys/bin/") 
+    apps = os.listdir(jeffos.OS_PATH+"/sys/bin/") 
     for app in apps:
         print(app)
 

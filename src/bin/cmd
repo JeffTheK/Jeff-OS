@@ -3,6 +3,13 @@
 import os
 import sys
 
+def cd(path):
+    if os.path.isdir(path) or path == "../":
+        os.chdir(path)
+    else:
+        print("wrong path")
+        return
+
 def run_app(path, args):
     file = open(path)
     text = file.read()
@@ -27,7 +34,9 @@ def main():
         args = i.split(" ")
         app_name = args[0]
         args = " ".join(args)
-        if os.path.isfile(OS_PATH+"/sys/bin/"+app_name):
+        if app_name == "cd":
+            cd(i.split(" ")[-1])
+        elif os.path.isfile(OS_PATH+"/sys/bin/"+app_name):
             run_app(OS_PATH+"/sys/bin/"+app_name, args)
         else:
             print(f"app '{i}' not found")
