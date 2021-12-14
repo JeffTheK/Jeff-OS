@@ -1,0 +1,11 @@
+#!python
+
+import os
+import sys
+
+def main():
+    path = sys.argv[2]
+    os.mkdir(path)
+
+if __name__ == "__main__":
+    main()
