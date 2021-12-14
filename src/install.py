@@ -21,8 +21,12 @@ def install():
     install_default_apps()
     
     print("installing libraries")
+    cfg = open("src/lib/jeffos/jeffos.cfg", "x")
+    cfg.write(os.getcwd() + "/Jeff-OS")
+    cfg.close()
     shutil.copytree("src/lib", "Jeff-OS/sys/lib")
     os.system("cd Jeff-OS/sys/lib/ && pip install .")
+    os.remove("src/lib/jeffos/jeffos.cfg")
 
     print("installing vars")
     os.mkdir("Jeff-OS/sys/var")

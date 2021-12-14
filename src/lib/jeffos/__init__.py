@@ -2,7 +2,10 @@ import os
 from pathlib import Path
 
 # FIXME: We should probably find a better way
-OS_PATH = str(Path(__file__).parent.parent.absolute())
+_dir = os.path.dirname(os.path.realpath(__file__))
+_cfg = open(_dir+"/jeffos.cfg", "r")
+OS_PATH = _cfg.readlines()[0].strip()
+_cfg.close()
 
 def getcwd():
     cfg = open(OS_PATH+"sys/var/cmd.cfg", "r")
