@@ -1,6 +1,11 @@
 import os
 import shutil
+import sys
 from datetime import datetime
+
+def install_default_apps():
+    print("installing default programs")
+    shutil.copytree("src/bin", "Jeff-OS/sys/bin")
 
 def install():
     if os.path.isdir("Jeff-OS"):
@@ -13,9 +18,8 @@ def install():
     os.mkdir("Jeff-OS/sys")
     os.mkdir("Jeff-OS/usr")
 
-    print("installing default programs")
-    shutil.copytree("src/bin", "Jeff-OS/sys/bin")
-
+    install_default_apps()
+    
     print("installing libraries")
     shutil.copytree("src/lib", "Jeff-OS/sys/lib")
     os.system("cd Jeff-OS/sys/lib/ && pip install .")
@@ -37,4 +41,5 @@ def install():
     cmd_cfg.close()
 
 if __name__ == "__main__":
-    install()
+    if len(sys.argv) <= 1:
+        install()
