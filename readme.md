@@ -38,6 +38,27 @@ Jeff-OS
 
 ```
 
+## Built-in Apps/Binaries
+* apps          lists installed binaries
+* cat           outputs contents of a file
+* cd            changes directory
+* clear         clears cmd
+* cmd           command line
+* find          searches in files
+* help          prints general help
+* jobs          prints background processes
+* ls            lists files in dir
+* mkdir         creates dir
+* mv            moves files/dirs
+* my            launches command outside of Jeff-OS
+* pwd           prints working dir
+* rm            removes files/dirs
+* sleep         sleeps for seconds
+* touch         creates empty text file
+* tree          recursively lists directories
+* uninstall     uninstalls binaries
+* watch         runs command with time period
+
 ## Meta
 
 Distributed under the MIT license. See ``license.txt`` for more information
