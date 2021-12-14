@@ -1,5 +1,6 @@
 import os
 from pathlib import Path
+import subprocess
 
 # FIXME: We should probably find a better way
 _dir = os.path.dirname(os.path.realpath(__file__))
@@ -29,6 +30,6 @@ def chdir(path):
 def run_system_app(app_name, args: list):
     args.insert(0, app_name)
     args = " ".join(args)
-    os.system(OS_PATH+"sys/bin/"+app_name+" "+args)
+    subprocess.run([OS_PATH+"sys/bin/"+app_name] + args.split(" "), check=True)
     # reload working dir
     os.chdir(getcwd())

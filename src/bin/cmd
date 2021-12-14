@@ -3,6 +3,7 @@
 import os
 import sys
 import jeffos
+import subprocess
 from datetime import datetime
 
 _aliases = {
@@ -11,9 +12,7 @@ _aliases = {
 }
 
 def run_app(path, args):
-    file = open(path)
-    text = file.read()
-    os.system(path+" "+args)
+    subprocess.run([path] + args.split(" "))
     # reload working dir
     os.chdir(jeffos.getcwd())
 
