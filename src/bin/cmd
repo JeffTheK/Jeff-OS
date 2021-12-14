@@ -11,10 +11,15 @@ _aliases = {
     "dir": "ls"
 }
 
+_background_processes = {}
+
 def run_app(path, args):
     subprocess.run([path] + args.split(" "))
     # reload working dir
     os.chdir(jeffos.getcwd())
+
+def run_app_in_background(path, args):
+    p = subprocess.Popen([path] + args.split(" "))
 
 def main():
     print("launching command line")
@@ -42,7 +47,11 @@ def main():
         history.write(i+"\n")
 
         if os.path.isfile(OS_PATH+"/sys/bin/"+app_name):
-            run_app(OS_PATH+"/sys/bin/"+app_name, args)
+            if args[-1] == "&":
+                args.replace("&", "")
+                run_app_in_background(OS_PATH+"/sys/bin/"+app_name, args)
+            else:
+                run_app(OS_PATH+"/sys/bin/"+app_name, args)
         elif i == "exit" or i == "quit":
             break
         else:
