@@ -3,8 +3,8 @@ from pathlib import Path
 
 # FIXME: We should probably find a better way
 _dir = os.path.dirname(os.path.realpath(__file__))
-_cfg = open(_dir+"/jeffos.cfg", "r")
-OS_PATH = _cfg.readlines()[0].strip()
+_cfg = open(_dir+"/jeffos.cfg.py", "r")
+OS_PATH = _cfg.readlines()[0].strip()+"/"
 _cfg.close()
 
 def getcwd():
