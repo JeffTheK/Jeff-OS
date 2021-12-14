@@ -13,8 +13,19 @@ _aliases = {
 
 _background_processes = {}
 
+# looks for special messages designed for command line
+def look_for_messages(output):
+    if "$PRINT_aliases" in output:
+        print(_aliases)
+    if "$PRINT_background_processes" in output:
+        print(_background_processes)
+    return output
+
 def run_app(path, args):
-    subprocess.run([path] + args.split(" "))
+    output = subprocess.check_output([path] + args.split(" "))
+    output = str(output, 'utf-8')
+    output = look_for_messages(output)
+    print(output)
     # reload working dir
     os.chdir(jeffos.getcwd())
 
@@ -37,6 +48,7 @@ def main():
     i = ""
     while True:
         i = input("cmd>")
+        look_for_messages(i)
 
         args = i.split(" ")
         app_name = args[0]
