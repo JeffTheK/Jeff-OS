@@ -49,6 +49,9 @@ def install():
     cmd_cfg.write(actual_os_dir)
     cmd_cfg.close()
 
+    # booting and restarting
+    shutil.copy("src/boot.py", "Jeff-OS/boot.py")
+
 if __name__ == "__main__":
     if len(sys.argv) <= 1:
         install()
