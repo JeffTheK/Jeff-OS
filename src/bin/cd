@@ -1,0 +1,17 @@
+#!python
+
+import sys
+import os
+import jeffos
+
+def main():
+    path = sys.argv[2]
+
+    if os.path.isdir(path) or path == "../":
+        jeffos.chdir("/"+path)
+    else:
+        print("wrong path")
+        return
+
+if __name__ == "__main__":
+    main()

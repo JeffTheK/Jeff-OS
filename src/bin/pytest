@@ -11,5 +11,14 @@ def main():
     print(sys.argv)
     print("OS_PATH:", jeffos.OS_PATH)
 
+    print("Changing path in cfg + /sys/")
+    jeffos.chdir("/sys/")
+    print("New path in cfg is")
+    print(jeffos.getcwd())
+    print("going back to root dir")
+    jeffos.chdir("../")
+    print("New path in cfg is")
+    print(jeffos.getcwd())
+
 if __name__ == "__main__":
     main()
