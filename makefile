@@ -1,5 +1,5 @@
 install:
-	python src/install.py
+	python install.py
 
 run:
-	python src/main.py
+	python run.py
