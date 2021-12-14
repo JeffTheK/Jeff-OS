@@ -1,0 +1,16 @@
+#!python
+
+import sys
+import glob
+import os
+
+def main():
+    name = sys.argv[2]
+    path = os.getcwd()+"/*/*/*"
+    stuff = glob.glob(path, recursive=False)
+    for s in stuff:
+        if name in s:
+            print(s)
+
+if __name__ == "__main__":
+    main()
