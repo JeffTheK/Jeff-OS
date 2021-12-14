@@ -1,0 +1,11 @@
+#!python
+
+import sys
+import os
+
+def main():
+    file = sys.argv[2]
+    os.remove(file)
+
+if __name__ == "__main__":
+    main()
