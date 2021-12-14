@@ -1,0 +1,11 @@
+#!python
+
+import sys
+
+def main():
+    file_name = sys.argv[2]
+    file = open(file_name, "x")
+    file.close()
+
+if __name__ == "__main__":
+    main()
