@@ -1,6 +1,6 @@
 # Jeff-OS
 
-My terminal os I made for fun
+Jeff-OS is a pseudo operating system made in pure python 3
 
 ## Usage
 Before installing u need to make sure that you have Python 3.0 and Make
