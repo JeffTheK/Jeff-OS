@@ -24,6 +24,8 @@ Then, run the os by running make run
 make run
 ```
 
+note: `make install` will reinstall the system if it's already present
+
 ## How it works
 `install.py` installs the os into current folder in `Jeff-OS`, including `boot.py`
 
