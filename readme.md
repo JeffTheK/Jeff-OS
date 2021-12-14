@@ -20,6 +20,12 @@ Then, run the os by running make run
 make run
 ```
 
+## How it works
+`install.py` installs the os into current folder in `Jeff-OS`, including `boot.py`
+
+`boot.py` launches `/sys/bin/cmd` - our command line, the core of our system.
+From there you can launch any binary located in `/sys/bin/`
+
 ## Meta
 
 Distributed under the MIT license. See ``license.txt`` for more information
