@@ -1,8 +1,8 @@
 import os
 from pathlib import Path
 
-#OS_PATH = open("sys/var/sys.cfg").readlines()[0].strip()
-OS_PATH = "/home/dima/dev/Jeff-OS/Jeff-OS/" # FIXME: Ugly hack
+# FIXME: We should probably find a better way
+OS_PATH = str(Path(__file__).parent.parent.absolute())
 
 def getcwd():
     cfg = open(OS_PATH+"sys/var/cmd.cfg", "r")
