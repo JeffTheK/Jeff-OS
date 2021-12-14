@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 
 import os
+from jeffos.color import colored
 
 def main():
-    print(os.getcwd())
+    print(colored(os.getcwd(), "cyan"))
 
 if __name__ == "__main__":
     main()
