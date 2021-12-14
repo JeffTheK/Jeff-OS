@@ -1,0 +1,12 @@
+#!python
+
+import sys
+import shutil
+
+def main():
+    src = sys.argv[2]
+    dst = sys.argv[3]
+    shutil.move(src, dst)
+
+if __name__ == "__main__":
+    main()
