@@ -5,6 +5,11 @@ import sys
 import jeffos
 from datetime import datetime
 
+_aliases = {
+    "move": "mv",
+    "dir": "ls"
+}
+
 def run_app(path, args):
     file = open(path)
     text = file.read()
@@ -31,8 +36,11 @@ def main():
     i = ""
     while True:
         i = input("cmd>")
+
         args = i.split(" ")
         app_name = args[0]
+        if app_name in _aliases.keys():
+            app_name = _aliases[i]
         args = " ".join(args)
 
         history.write(i+"\n")
