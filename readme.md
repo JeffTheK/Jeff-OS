@@ -39,6 +39,8 @@ Jeff-OS
 ```
 
 ## Built-in Apps/Binaries
+todo: these apps are very basic and have almost no arguments/checks
+You can help the project by polishing them.
 * apps          lists installed binaries
 * cat           outputs contents of a file
 * cd            changes directory
