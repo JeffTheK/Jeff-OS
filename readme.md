@@ -26,6 +26,18 @@ make run
 `boot.py` launches `/sys/bin/cmd` - our command line, the core of our system.
 From there you can launch any binary located in `/sys/bin/`
 
+## File structure
+```
+Jeff-OS
+    ----sys             system files
+        ----bin         built in binaries/apps
+        ----lib         libraries
+        ----var         configs
+    ----usr             user files
+        ----var         configs
+
+```
+
 ## Meta
 
 Distributed under the MIT license. See ``license.txt`` for more information
