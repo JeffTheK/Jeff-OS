@@ -59,6 +59,10 @@ Jeff-OS
 * uninstall     uninstalls binaries
 * watch         runs command with time period
 
+## Built-in Libraries
+jeffos python package is used to access system info
+(right now it's only useful for changing directory since os.chdir() won't work)
+
 ## Meta
 
 Distributed under the MIT license. See ``license.txt`` for more information
