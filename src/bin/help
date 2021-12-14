@@ -1,4 +1,4 @@
-#!python
+#!/usr/bin/env python3
 
 help_text = """
 Any INPUT you will type will attempt to

@@ -1,4 +1,4 @@
-#!python
+#!/usr/bin/env python3
 
 import os
 import sys
@@ -13,12 +13,9 @@ _aliases = {
 def run_app(path, args):
     file = open(path)
     text = file.read()
-    if text.startswith("#!python"):
-        os.system("python "+path+" "+args)
-        # reload working dir
-        os.chdir(jeffos.getcwd())
-    else:
-        print("can't run")
+    os.system(path+" "+args)
+    # reload working dir
+    os.chdir(jeffos.getcwd())
 
 def main():
     print("launching command line")
