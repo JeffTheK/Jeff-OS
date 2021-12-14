@@ -31,6 +31,8 @@ def run_app(path, args):
 
 def run_app_in_background(path, args):
     p = subprocess.Popen([path] + args.split(" "))
+    index = str(len(_background_processes))
+    _background_processes[path+'['+index+']'] = p
 
 def main():
     print("launching command line")
