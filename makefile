@@ -4,3 +4,7 @@ install:
 
 run:
 	python run.py
+
+debug:
+	make install
+	make run
