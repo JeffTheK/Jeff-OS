@@ -1,0 +1,11 @@
+#!python
+
+import time
+import sys
+
+def main():
+    how_much = int(sys.argv[2])
+    time.sleep(how_much)
+
+if __name__ == "__main__":
+    main()
