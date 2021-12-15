@@ -6,7 +6,7 @@ import jeffos
 import subprocess
 from datetime import datetime
 from pynput.keyboard import Key, Listener
-from jeffos.color import colored
+from jeffos.color import colored, OK
 
 _aliases = {
     "move": "mv",
@@ -67,8 +67,8 @@ def parse_input(i, history):
         print(f"app '{i}' not found")
 
 def main():
-    print("launching command line")
-    print("type help for basic info")
+    print(OK+"launching command line")
+    print(OK+"type help for basic info")
 
     os.chdir("Jeff-OS/")
 
