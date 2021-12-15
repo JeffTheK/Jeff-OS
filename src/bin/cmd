@@ -22,7 +22,6 @@ def look_for_messages(output):
     return output
 
 def run_app(path, args):
-    print(args)
     output = subprocess.check_output([path] + args.split(" "))
     output = str(output, 'utf-8')
     output = look_for_messages(output)
