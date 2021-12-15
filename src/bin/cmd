@@ -22,6 +22,7 @@ def look_for_messages(output):
     return output
 
 def run_app(path, args):
+    print(args)
     output = subprocess.check_output([path] + args.split(" "))
     output = str(output, 'utf-8')
     output = look_for_messages(output)
@@ -54,6 +55,7 @@ def main():
 
         args = i.split(" ")
         app_name = args[0]
+        args.pop(0)
         if app_name in _aliases.keys():
             app_name = _aliases[i]
         args = " ".join(args)
@@ -61,7 +63,7 @@ def main():
         history.write(i+"\n")
 
         if os.path.isfile(OS_PATH+"/sys/bin/"+app_name):
-            if args[-1] == "&":
+            if len(args) != 0 and args[-1] == "&":
                 args.replace("&", "")
                 run_app_in_background(OS_PATH+"/sys/bin/"+app_name, args)
             else:
