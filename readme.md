@@ -47,25 +47,25 @@ Jeff-OS
 ## Built-in Apps/Binaries
 todo: these apps are very basic and have almost no arguments/checks
 You can help the project by polishing them.
-* apps          lists installed binaries
-* cat           outputs contents of a file
-* cd            changes directory
-* clear         clears cmd
-* cmd           command line
-* find          searches in files
-* help          prints general help
-* jobs          prints background processes
-* ls            lists files in dir
-* mkdir         creates dir
-* mv            moves files/dirs
-* my            launches command outside of Jeff-OS
-* pwd           prints working dir
-* rm            removes files/dirs
-* sleep         sleeps for seconds
-* touch         creates empty text file
-* tree          recursively lists directories
-* uninstall     uninstalls binaries
-* watch         runs command with time period
+* apps        -  lists installed binaries
+* cat         -  outputs contents of a file
+* cd          -  changes directory
+* clear       -  clears cmd
+* cmd         -  command line
+* find        -  searches in files
+* help        -  prints general help
+* jobs        -  prints background processes
+* ls          -  lists files in dir
+* mkdir       -  creates dir
+* mv          -  moves files/dirs
+* my          -  launches command outside of Jeff-OS
+* pwd         -  prints working dir
+* rm          -  removes files/dirs
+* sleep       -  sleeps for seconds
+* touch       -  creates empty text file
+* tree        -  recursively lists directories
+* uninstall   -  uninstalls binaries
+* watch       -  runs command with time period
 
 ## Built-in Libraries
 jeffos python package is used to access system info
