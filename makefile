@@ -1,7 +1,7 @@
 compile:
 	gcc src/bin/python.c -o src/bin/python
 
-install:
+install: compile
 	pip install -r requirements.txt
 	python install.py
 	make clean
