@@ -45,6 +45,7 @@ Jeff-OS
 ```
 
 ## Built-in Apps/Binaries
+Source code is located in `src/bin/`
 todo: these apps are very basic and have almost no arguments/checks
 You can help the project by polishing them.
 * apps        -  lists installed binaries
@@ -68,6 +69,7 @@ You can help the project by polishing them.
 * watch       -  runs command with time period
 
 ## Built-in Libraries
+Source code is located in `src/lib`
 jeffos python package is used to access system info
 (right now it's only useful for changing directory since os.chdir() won't work)
 
