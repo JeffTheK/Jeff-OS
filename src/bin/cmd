@@ -6,6 +6,7 @@ import jeffos
 import subprocess
 from datetime import datetime
 from pynput.keyboard import Key, Listener
+from jeffos.color import colored
 
 _aliases = {
     "move": "mv",
@@ -62,6 +63,7 @@ def parse_input(i, history):
     elif i == "exit" or i == "quit":
         return False
     else:
+        i = colored(i, "blue")
         print(f"app '{i}' not found")
 
 def main():
@@ -72,7 +74,7 @@ def main():
 
     history = open(jeffos.OS_PATH+"usr/cmd_history.txt", "a")
     while True:
-        parse_input(input("cmd>"), history)
+        parse_input(input(colored("cmd>", "yellow")), history)
     history.close()
         
     print("closing terminal")
