@@ -4,8 +4,8 @@ import sys
 import jeffos
 
 def main():
-    period = sys.argv[2]
-    app = sys.argv[3]
+    period = sys.argv[1]
+    app = sys.argv[2]
 
     try:
         while True:

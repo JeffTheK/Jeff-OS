@@ -4,7 +4,7 @@ import time
 import sys
 
 def main():
-    how_much = int(sys.argv[2])
+    how_much = int(sys.argv[1])
     time.sleep(how_much)
 
 if __name__ == "__main__":

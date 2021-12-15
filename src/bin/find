@@ -5,7 +5,7 @@ import glob
 import os
 
 def main():
-    name = sys.argv[2]
+    name = sys.argv[1]
     path = os.getcwd()+"/*/*/*"
     stuff = glob.glob(path, recursive=False)
     for s in stuff:

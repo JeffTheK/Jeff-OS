@@ -5,7 +5,7 @@ import sys
 import jeffos
 
 def main():
-    app_name = sys.argv[2]
+    app_name = sys.argv[1]
     path = jeffos.OS_PATH+"/sys/bin/"+app_name
     os.remove(path)
     print("removed "+path)

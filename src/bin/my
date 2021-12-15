@@ -4,7 +4,7 @@ import os
 import sys
 
 def main():
-    command = sys.argv[2]
+    command = sys.argv[1]
     os.system(command)
 
 if __name__ == "__main__":
