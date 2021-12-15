@@ -5,6 +5,7 @@ import sys
 import jeffos
 import subprocess
 from datetime import datetime
+from pynput.keyboard import Key, Listener
 
 _aliases = {
     "move": "mv",
@@ -38,18 +39,9 @@ def run_app_in_background(path, args):
     index = str(len(_background_processes))
     _background_processes[path+'['+index+']'] = p
 
-def main():
-    print("launching command line")
-    print("type help for basic info")
-
+def parse_input():
     history = open(jeffos.OS_PATH+"usr/cmd_history.txt", "a")
     history.write("starting session "+datetime.now().strftime("%d-%m-%Y %H:%M")+"\n")
-
-    os.chdir("Jeff-OS/")
-    sys.path.pop(0)
-    sys.path.insert(0, os.getcwd()+"/sys/lib/")
-    global OS_PATH
-    OS_PATH = os.getcwd()
 
     i = ""
     while True:
@@ -75,9 +67,21 @@ def main():
             break
         else:
             print(f"app '{i}' not found")
-
-    print("closing terminal")
     history.close()
+
+def main():
+    print("launching command line")
+    print("type help for basic info")
+
+    os.chdir("Jeff-OS/")
+    sys.path.pop(0)
+    sys.path.insert(0, os.getcwd()+"/sys/lib/")
+    global OS_PATH
+    OS_PATH = os.getcwd()
+
+    parse_input()
+        
+    print("closing terminal")
 
 if __name__ == "__main__":
     main()
