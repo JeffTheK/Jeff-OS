@@ -3,7 +3,20 @@ import shutil
 import sys
 from datetime import datetime
 from shutil import ignore_patterns
-from jeffos.color import colored, OK
+
+# message colors
+try:
+    from colorama import Fore, Back, Style
+    from termcolor import colored
+    OK = '['+colored("OK", "green")+']'
+    WARN = '['+colored("WARN", "yellow")+']'
+    ERR = '['+colored("ERR", "red")+']'
+except:
+    def colored(string, col1, col2=""):
+        return string
+    OK = "[OK]"
+    WARN = "[WARN]"
+    ERR = "[ERR]"
 
 def install_default_apps():
     print(OK+"installing default programs")
