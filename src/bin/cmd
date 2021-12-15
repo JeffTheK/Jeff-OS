@@ -53,12 +53,12 @@ def parse_input(i, history):
 
     history.write(i+"\n")
 
-    if os.path.isfile(OS_PATH+"/sys/bin/"+app_name):
+    if os.path.isfile(jeffos.OS_PATH+"/sys/bin/"+app_name):
         if len(args) != 0 and args[-1] == "&":
             args.replace("&", "")
-            run_app_in_background(OS_PATH+"/sys/bin/"+app_name, args)
+            run_app_in_background(jeffos.OS_PATH+"/sys/bin/"+app_name, args)
         else:
-            run_app(OS_PATH+"/sys/bin/"+app_name, args)
+            run_app(jeffos.OS_PATH+"/sys/bin/"+app_name, args)
     elif i == "exit" or i == "quit":
         return False
     else:
@@ -69,10 +69,6 @@ def main():
     print("type help for basic info")
 
     os.chdir("Jeff-OS/")
-    sys.path.pop(0)
-    sys.path.insert(0, os.getcwd()+"/sys/lib/")
-    global OS_PATH
-    OS_PATH = os.getcwd()
 
     history = open(jeffos.OS_PATH+"usr/cmd_history.txt", "a")
     while True:
