@@ -2,8 +2,11 @@
 
 import os
 import jeffos
+import click
 
+@click.command()
 def main():
+    """Lists installed binaries in /sys/bin/"""
     apps = os.listdir(jeffos.OS_PATH+"/sys/bin/") 
     for app in apps:
         print(app)
