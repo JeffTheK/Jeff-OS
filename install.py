@@ -2,10 +2,11 @@ import os
 import shutil
 import sys
 from datetime import datetime
+from shutil import ignore_patterns
 
 def install_default_apps():
     print("installing default programs")
-    shutil.copytree("src/bin", "Jeff-OS/sys/bin")
+    shutil.copytree("src/bin", "Jeff-OS/sys/bin", ignore=ignore_patterns('*.c', '*.h'))
 
 def install():
     if os.path.isdir("Jeff-OS"):
