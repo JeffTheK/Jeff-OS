@@ -8,6 +8,7 @@ Python 3.6
 
 ## Usage
 Before installing u need to make sure that you have Python 3.6 and Make
+
 Run these commands to make sure you have the libraries
 ```sh
 python --version
@@ -46,6 +47,7 @@ Jeff-OS
 
 ## Built-in Apps/Binaries
 Source code is located in `src/bin/`
+
 todo: these apps are very basic and have almost no arguments/checks
 You can help the project by polishing them.
 * apps        -  lists installed binaries
