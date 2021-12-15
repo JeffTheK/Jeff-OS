@@ -10,3 +10,5 @@ except:
     OK = "[OK]"
     WARN = "[WARN]"
     ERR = "[ERR]"
+
+    print(ERR+"color packages are not installed correctly")
