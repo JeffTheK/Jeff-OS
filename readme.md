@@ -54,6 +54,7 @@ You can help the project by polishing them.
 * cat         -  outputs contents of a file
 * cd          -  changes directory
 * clear       -  clears cmd
+* cp          -  copies file
 * cmd         -  command line
 * find        -  searches in files
 * help        -  prints general help
