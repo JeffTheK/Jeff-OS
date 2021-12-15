@@ -5,7 +5,9 @@ import sys
 
 def main():
     command = sys.argv[1]
-    os.system(command)
+    args = sys.argv[2:-1]
+    args = " ".join(args)
+    os.system(command+" "+args)
 
 if __name__ == "__main__":
     main()
