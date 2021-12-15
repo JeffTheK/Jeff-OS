@@ -8,6 +8,7 @@ Python 3.6
 
 ## Usage
 Before installing u need to make sure that you have Python 3.6 and Make
+
 Run these commands to make sure you have the libraries
 ```sh
 python --version
