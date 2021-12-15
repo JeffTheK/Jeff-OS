@@ -2,8 +2,11 @@
 
 import os
 from jeffos.color import colored
+import click
 
+@click.command()
 def main():
+    """Prints current working dir"""
     print(colored(os.getcwd(), "cyan"))
 
 if __name__ == "__main__":
