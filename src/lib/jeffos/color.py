@@ -5,4 +5,4 @@ try:
 except:
     def colored(string, col1, col2=""):
         return string
-    OK = ""
+    OK = "[OK]"
