@@ -5,6 +5,7 @@ Jeff-OS is a pseudo operating system made in pure python 3
 ## Requirements
 Make,
 Python 3.6
+GCC
 
 ## Usage
 Before installing u need to make sure that you have Python 3.6 and Make
@@ -13,6 +14,7 @@ Run these commands to make sure you have the libraries
 ```sh
 python --version
 make --version
+gcc --version
 ```
 
 First, install the OS by running make install
