@@ -22,7 +22,7 @@ int main(int argc, char **argv)
     if (getcwd(cwd, sizeof(cwd)) != NULL) {
     }
 
-    sprintf(str, "%s/sys/bin/%s", cwd, app_name);
+    sprintf(str, "python %s/sys/bin/%s", cwd, app_name);
 
     system(str);
 
