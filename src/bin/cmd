@@ -39,35 +39,30 @@ def run_app_in_background(path, args):
     index = str(len(_background_processes))
     _background_processes[path+'['+index+']'] = p
 
-def parse_input():
-    history = open(jeffos.OS_PATH+"usr/cmd_history.txt", "a")
+def parse_input(i, history):
     history.write("starting session "+datetime.now().strftime("%d-%m-%Y %H:%M")+"\n")
 
-    i = ""
-    while True:
-        i = input("cmd>")
-        look_for_messages(i)
+    look_for_messages(i)
 
-        args = i.split(" ")
-        app_name = args[0]
-        args.pop(0)
-        if app_name in _aliases.keys():
-            app_name = _aliases[i]
-        args = " ".join(args)
+    args = i.split(" ")
+    app_name = args[0]
+    args.pop(0)
+    if app_name in _aliases.keys():
+        app_name = _aliases[i]
+    args = " ".join(args)
 
-        history.write(i+"\n")
+    history.write(i+"\n")
 
-        if os.path.isfile(OS_PATH+"/sys/bin/"+app_name):
-            if len(args) != 0 and args[-1] == "&":
-                args.replace("&", "")
-                run_app_in_background(OS_PATH+"/sys/bin/"+app_name, args)
-            else:
-                run_app(OS_PATH+"/sys/bin/"+app_name, args)
-        elif i == "exit" or i == "quit":
-            break
+    if os.path.isfile(OS_PATH+"/sys/bin/"+app_name):
+        if len(args) != 0 and args[-1] == "&":
+            args.replace("&", "")
+            run_app_in_background(OS_PATH+"/sys/bin/"+app_name, args)
         else:
-            print(f"app '{i}' not found")
-    history.close()
+            run_app(OS_PATH+"/sys/bin/"+app_name, args)
+    elif i == "exit" or i == "quit":
+        return False
+    else:
+        print(f"app '{i}' not found")
 
 def main():
     print("launching command line")
@@ -79,7 +74,10 @@ def main():
     global OS_PATH
     OS_PATH = os.getcwd()
 
-    parse_input()
+    history = open(jeffos.OS_PATH+"usr/cmd_history.txt", "a")
+    while True:
+        parse_input(input("cmd>"), history)
+    history.close()
         
     print("closing terminal")
 
