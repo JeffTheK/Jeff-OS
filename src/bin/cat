@@ -2,17 +2,12 @@
 
 import os
 import sys
+import click
 
-def main():
-    if len(sys.argv) != 3:
-        print("wrong number of arguments")
-        return
-    path = sys.argv[2]
-    if not os.path.isfile(path):
-        print("file not found")
-        return
-
-    file = open(path, 'r')
+@click.command()
+@click.argument("filename")
+def main(filename):
+    file = open(filename, 'r')
     text = file.read()
     print(text)
 
