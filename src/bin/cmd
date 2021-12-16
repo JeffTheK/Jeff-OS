@@ -6,7 +6,6 @@ import jeffos
 import subprocess
 import signal
 from datetime import datetime
-from pynput.keyboard import Key, Listener
 from jeffos.color import colored, OK
 
 _aliases = {
