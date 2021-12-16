@@ -93,6 +93,11 @@ def parse_input(i, history):
         print(f"app '{i}' not found")
         did_you_mean(app_name)
 
+def exit():
+    global _is_running
+    _is_running = False
+    print(OK+"closing terminal")
+
 def main():
     print(OK+"launching command line")
     print("type help for basic info")
@@ -108,11 +113,12 @@ def main():
         inp = inp.strip()
         if inp == "":
             continue
-        parse_input(inp, history)
+        elif inp == "quit" or inp == "exit":
+            exit()
+        else:
+            parse_input(inp, history)
 
     history.close()
-        
-    print(OK+"closing terminal")
 
 if __name__ == "__main__":
     main()
