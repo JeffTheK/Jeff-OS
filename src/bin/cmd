@@ -79,7 +79,7 @@ def main():
     print(OK+"launching command line")
     print("type help for basic info")
 
-    os.chdir("Jeff-OS/")
+    os.chdir(jeffos.OS_PATH)
 
     history = open(jeffos.OS_PATH+"usr/cmd_history.txt", "a")
     history.write("starting session "+datetime.now().strftime("%d-%m-%Y %H:%M")+"\n")
