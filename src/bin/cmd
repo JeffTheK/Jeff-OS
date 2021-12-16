@@ -53,8 +53,6 @@ def parse_input(i, history):
     if not _is_running:
         return
 
-    history.write("starting session "+datetime.now().strftime("%d-%m-%Y %H:%M")+"\n")
-
     look_for_messages(i)
 
     args = i.split(" ")
@@ -85,6 +83,7 @@ def main():
     os.chdir("Jeff-OS/")
 
     history = open(jeffos.OS_PATH+"usr/cmd_history.txt", "a")
+    history.write("starting session "+datetime.now().strftime("%d-%m-%Y %H:%M")+"\n")
 
     global _is_running
     while _is_running:
