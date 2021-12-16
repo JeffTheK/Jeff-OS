@@ -44,6 +44,7 @@ Jeff-OS
         ----var         configs
     ----usr             user files
         ----var         configs
+    ----tmp             temporary files
 
 ```
 
