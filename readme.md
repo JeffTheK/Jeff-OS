@@ -1,6 +1,6 @@
 # Jeff-OS
 
-Jeff-OS is a pseudo operating system made in pure python 3
+Jeff-OS is a pseudo operating system made in python 3
 
 ## Requirements
 Make,
