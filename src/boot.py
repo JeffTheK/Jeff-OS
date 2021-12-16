@@ -19,6 +19,10 @@ def boot():
         jeffos.run_system_app("useradd", "root")
     usr_cfg.close()
 
+    # /tmp/
+    if not os.path.isdir(jeffos.OS_PATH+"tmp/"):
+        os.mkdir(jeffos.OS_PATH+"tmp/")
+
     # run command line
     cmd_path = our_path.joinpath("sys/bin/cmd")
     cmd_path = str(cmd_path)
