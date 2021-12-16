@@ -1,0 +1,82 @@
+#!/usr/bin/env python3
+
+import click
+from jeffos.color import colored
+
+def test(fore_color="white", back_color=None):
+    print(colored("X", fore_color, back_color), end="")
+
+@click.command()
+def main():
+    """color testing"""
+    test("red")
+    test("green")
+    test("yellow")
+    test("blue")
+    test("cyan")
+    test("magenta")
+
+    print()
+
+    test("red", "on_red")
+    test("red", "on_white")
+    test("red", "on_green")
+    test("red", "on_yellow")
+    test("red", "on_blue")
+    test("red", "on_cyan")
+    test("red", "on_magenta")
+
+    print()
+    
+    test("green", "on_red")
+    test("green", "on_white")
+    test("green", "on_green")
+    test("green", "on_yellow")
+    test("green", "on_blue")
+    test("green", "on_cyan")
+    test("green", "on_magenta")
+
+    print()
+
+    test("yellow", "on_red")
+    test("yellow", "on_white")
+    test("yellow", "on_green")
+    test("yellow", "on_yellow")
+    test("yellow", "on_blue")
+    test("yellow", "on_cyan")
+    test("yellow", "on_magenta")
+
+    print()
+
+    test("blue", "on_red")
+    test("blue", "on_white")
+    test("blue", "on_green")
+    test("blue", "on_yellow")
+    test("blue", "on_blue")
+    test("blue", "on_cyan")
+    test("blue", "on_magenta")
+
+    print()
+
+    test("cyan", "on_red")
+    test("cyan", "on_white")
+    test("cyan", "on_green")
+    test("cyan", "on_yellow")
+    test("cyan", "on_blue")
+    test("cyan", "on_cyan")
+    test("cyan", "on_magenta")
+
+    print()
+
+    test("magenta", "on_red")
+    test("magenta", "on_white")
+    test("magenta", "on_green")
+    test("magenta", "on_yellow")
+    test("magenta", "on_blue")
+    test("magenta", "on_cyan")
+    test("magenta", "on_magenta")
+
+    print()
+
+if __name__ == "__main__":
+    main()
