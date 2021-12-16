@@ -43,6 +43,7 @@ Jeff-OS
         ----lib         libraries
         ----var         configs
     ----usr             user files
+        ----root        root user, always present
         ----var         configs
     ----tmp             temporary files
 
