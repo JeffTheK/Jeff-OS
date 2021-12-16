@@ -86,7 +86,11 @@ def main():
 
     global _is_running
     while _is_running:
-        parse_input(input(colored("cmd>", "yellow")), history)
+        inp = input(colored("cmd>", "yellow"))
+        inp = inp.strip()
+        if inp == "":
+            continue
+        parse_input(inp, history)
 
     history.close()
         
