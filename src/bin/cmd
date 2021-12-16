@@ -15,6 +15,7 @@ _aliases = {
 
 _background_processes = {}
 
+# FIXME: doesn't work, since we don't save output
 # looks for special messages designed for command line
 def look_for_messages(output):
     if "$PRINT_aliases" in output:
@@ -28,10 +29,7 @@ def run_app(path, args):
         args = args.split(" ")
     else:
         args = []
-    output = subprocess.check_output([path] + args)
-    output = str(output, 'utf-8')
-    output = look_for_messages(output)
-    print(output)
+    subprocess.call([path] + args)
     # reload working dir
     os.chdir(jeffos.getcwd())
 
