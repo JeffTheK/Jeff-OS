@@ -110,7 +110,8 @@ def main():
 
     global _is_running
     while _is_running:
-        inp = input(colored("cmd>", "yellow"))
+        prompt = colored(jeffos.get_current_user(), "red")+"@"+colored("cmd>", "yellow")
+        inp = input(prompt)
         inp = inp.strip()
         if inp == "":
             continue
