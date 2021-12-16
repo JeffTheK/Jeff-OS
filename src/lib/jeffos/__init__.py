@@ -41,7 +41,7 @@ def change_current_user(user_name: str):
 
     usr_cfg = open(OS_PATH+"sys/var/usr.cfg", 'w')
     usr_cfg.writelines(lines)
-    usr_cfg.close()()
+    usr_cfg.close()
 
 def run_system_app(app_name, args: str):
     if args != "":
