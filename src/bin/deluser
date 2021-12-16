@@ -1,0 +1,34 @@
+#!/usr/bin/env python3
+
+import click
+import jeffos
+import shutil
+from jeffos.color import colored, ERR
+
+@click.command()
+@click.argument("username")
+def main(username):
+    if jeffos.get_current_user() != "root":
+        print(ERR+"only root user can do this")
+        return
+
+    """removes user and their files"""
+    if username == "root":
+        print(ERR+"deleting root user is not allowed")
+        return
+
+    shutil.rmtree(jeffos.OS_PATH+"usr/"+username)   
+    # usr.cfg
+    usr_cfg = open(OS_PATH+"sys/var/usr.cfg", 'r')
+    lines = usr_cfg.readlines()
+    lines.pop(lines.index(username+"\n"))
+    usr_cfg.close()
+
+    usr_cfg = open(OS_PATH+"sys/var/usr.cfg", 'w')
+    usr.cfg.writelines(lines)
+    usr_cfg.close()
+
+
+
+if __name__ == "__main__":
+    main()
