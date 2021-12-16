@@ -27,9 +27,11 @@ def chdir(path):
         lines[0] = os.path.join(lines[0]+ path)
     cfg.writelines(lines)
 
-def run_system_app(app_name, args: list):
-    args.insert(0, app_name)
-    args = " ".join(args)
-    subprocess.run([OS_PATH+"sys/bin/"+app_name] + args.split(" "), check=True)
+def run_system_app(app_name, args: str):
+    if args != "":
+        args = args.split(" ")
+    else:
+        args = []
+    subprocess.call([OS_PATH+"sys/bin/"+app_name] + args)
     # reload working dir
     os.chdir(getcwd())
