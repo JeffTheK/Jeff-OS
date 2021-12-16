@@ -71,6 +71,10 @@ def install():
     print(OK+"copying booting files")
     shutil.copy("src/boot.py", "Jeff-OS/boot.py")
 
+    # docs
+    os.mkdir("Jeff-OS/sys/docs/")
+    shutil.copy("readme.md", "Jeff-OS/sys/docs/readme.md")
+
 if __name__ == "__main__":
     if len(sys.argv) <= 1:
         install()
