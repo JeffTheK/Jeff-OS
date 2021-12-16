@@ -36,7 +36,7 @@ def get_current_user() -> str:
 def change_current_user(user_name: str):
     usr_cfg = open(OS_PATH+"sys/var/usr.cfg", 'r')
     lines = usr_cfg.readlines()
-    lines[0] = user_name
+    lines[0] = user_name+"\n"
     usr_cfg.close()
 
     usr_cfg = open(OS_PATH+"sys/var/usr.cfg", 'w')
