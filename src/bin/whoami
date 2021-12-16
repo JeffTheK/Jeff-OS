@@ -1,0 +1,13 @@
+#!/usr/bin/env python3
+
+import click
+import jeffos
+from jeffos.color import colored
+
+def main():
+    """prints the user's name"""
+    color = "cyan"
+    print(colored(jeffos.get_current_user(), color))
+
+if __name__ == "__main__":
+    main()
