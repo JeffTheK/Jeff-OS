@@ -100,6 +100,7 @@ def exit():
 
 def main():
     print(OK+"launching command line")
+    print("you are "+colored(jeffos.get_current_user(), "cyan"))
     print("type help for basic info")
 
     os.chdir(jeffos.OS_PATH)

@@ -27,6 +27,12 @@ def chdir(path):
         lines[0] = os.path.join(lines[0]+ path)
     cfg.writelines(lines)
 
+def get_current_user() -> str:
+    usr_cfg = open(OS_PATH+"sys/var/usr.cfg", 'r')
+    current_user = usr_cfg.readlines()[0].strip()
+    usr_cfg.close()
+    return current_user
+
 def run_system_app(app_name, args: str):
     if args != "":
         args = args.split(" ")
