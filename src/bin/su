@@ -1,0 +1,13 @@
+#!/usr/bin/env python3
+
+import click
+import jeffos
+
+@click.command()
+@click.argument("username")
+def main(username):
+    """switch to other user"""
+    jeffos.change_current_user(username)
+
+if __name__ == "__main__":
+    main()
