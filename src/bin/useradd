@@ -14,5 +14,11 @@ def main(username):
     os.mkdir(user_path+"/lib/")
     os.mkdir(user_path+"/var/")
 
+    # usr.cfg
+    usr_cfg = open(jeffos.OS_PATH+"sys/var/usr.cfg", "a")
+    usr_cfg.write(username+"\n")
+    usr_cfg.write("NO_PASSWORD"+"\n")
+    usr_cfg.close()
+
 if __name__ == "__main__":
     main()
