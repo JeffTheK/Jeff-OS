@@ -7,6 +7,7 @@ import subprocess
 import signal
 from datetime import datetime
 from jeffos.color import colored, OK
+from collections import Counter
 
 _aliases = {
     "move": "mv",
@@ -48,6 +49,21 @@ def run_app_in_background(path, args):
     index = str(len(_background_processes))
     _background_processes[path+'['+index+']'] = p
 
+def did_you_mean(app_name):
+    apps_path = jeffos.OS_PATH+"sys/bin/"
+    files = os.listdir(apps_path)
+    rated_files = {}
+    for f in files:
+        rated_files[f] = sum((Counter(f) & Counter(app_name)).values())
+    rated_files = list(rated_files.items())
+    rated_files = sorted(rated_files, key=lambda x: x[1])
+    rated_files.reverse()
+    rated_files = rated_files[0:2]
+    print("did you mean", end="")
+    for f in rated_files:
+        print(" "+colored(f[0], "cyan"), end="")
+    print("?")
+
 def parse_input(i, history):
     if not _is_running:
         return
@@ -72,8 +88,10 @@ def parse_input(i, history):
     elif i == "exit" or i == "quit":
         return False
     else:
+        # app not found
         i = colored(i, "blue")
         print(f"app '{i}' not found")
+        did_you_mean(app_name)
 
 def main():
     print(OK+"launching command line")
