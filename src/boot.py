@@ -16,6 +16,7 @@ def boot():
     usr_cfg = open(jeffos.OS_PATH+"sys/var/usr.cfg", 'r+')
     if usr_cfg.read() == "":
         print(OK+"no users present, adding root user")
+        usr_cfg.write("root\n") # set current user
         jeffos.run_system_app("useradd", "root")
     usr_cfg.close()
 
