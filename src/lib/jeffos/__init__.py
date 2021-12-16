@@ -33,6 +33,16 @@ def get_current_user() -> str:
     usr_cfg.close()
     return current_user
 
+def change_current_user(user_name: str):
+    usr_cfg = open(OS_PATH+"sys/var/usr.cfg", 'r')
+    lines = usr_cfg.readlines()
+    lines[0] = user_name
+    usr_cfg.close()
+
+    usr_cfg = open(OS_PATH+"sys/var/usr.cfg", 'w')
+    usr_cfg.writelines(lines)
+    usr_cfg.close()()
+
 def run_system_app(app_name, args: str):
     if args != "":
         args = args.split(" ")
