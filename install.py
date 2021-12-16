@@ -56,12 +56,7 @@ def install():
     sys_cfg.write(os_name + "\n")
     sys_cfg.write(build_time + "\n")
     sys_cfg.close()
-    # usr.cfg
-    usr_cfg = open("Jeff-OS/sys/var/usr.cfg", 'w')
-    usr_cfg.write("NO_NAME \n")
-    usr_cfg.write("NO_PASSWORD \n")
-    usr_cfg.close()
-
+    
     # cmd.cfg
     cmd_cfg = open("Jeff-OS/sys/var/cmd.cfg", 'w')
     cmd_cfg.write(actual_os_dir)
