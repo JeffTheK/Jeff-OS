@@ -1,0 +1,15 @@
+#!/usr/bin/env python3
+
+import os
+import click
+import jeffos
+
+@click.command()
+def main():
+    """displays command history"""
+    cmd_history = open(jeffos.OS_PATH+"usr/cmd_history.txt", "r")
+    print(cmd_history.read())
+    cmd_history.close()
+
+if __name__ == "__main__":
+    main()
