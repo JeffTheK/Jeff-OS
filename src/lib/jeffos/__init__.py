@@ -2,6 +2,7 @@ import os
 from pathlib import Path
 import subprocess
 from .user import *
+from .did_you_mean import did_you_mean
 
 # FIXME: We should probably find a better way
 _dir = os.path.dirname(os.path.realpath(__file__))

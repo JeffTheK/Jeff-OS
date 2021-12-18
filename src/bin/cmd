@@ -8,7 +8,6 @@ import signal
 import re
 from datetime import datetime
 from jeffos.color import colored, OK
-from collections import Counter
 
 _aliases = { }
 
@@ -69,21 +68,7 @@ def run_app_in_background(path, args):
 def did_you_mean(app_name):
     apps_path = jeffos.OS_PATH+"sys/bin/"
     files = os.listdir(apps_path)
-    rated_files = {}
-    for f in files:
-        rated_files[f] = sum((Counter(f) & Counter(app_name)).values())
-    rated_files = list(rated_files.items())
-    for i, f in enumerate(rated_files):
-        len_diff = abs( len(f[0]) - len(app_name) )
-        if len_diff >= 4:
-            rated_files.pop(i)
-    rated_files = sorted(rated_files, key=lambda x: x[1])
-    rated_files.reverse()
-    rated_files = rated_files[0:2]
-    print("did you mean", end="")
-    for f in rated_files:
-        print(" "+colored(f[0], "cyan"), end="")
-    print("?")
+    jeffos.did_you_mean(app_name, files)
 
 def parse_input(i, history):
     if not _is_running:
