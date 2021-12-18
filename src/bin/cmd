@@ -115,6 +115,11 @@ def exit():
     _is_running = False
     print(OK+"closing terminal")
 
+def reboot():
+    print(OK+"rebooting")
+    exit()
+    subprocess.call(jeffos.OS_PATH+"boot.py")
+
 def main():
     print(OK+"launching command line")
     parse_cfg()
@@ -135,6 +140,8 @@ def main():
             continue
         elif inp == "quit" or inp == "exit":
             exit()
+        elif inp == "reboot":
+            reboot()
         else:
             parse_input(inp, history)
 
