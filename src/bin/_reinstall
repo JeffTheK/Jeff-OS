@@ -1,0 +1,13 @@
+#!/usr/bin/env python3
+
+import os
+import jeffos
+import click
+
+def main():
+    """reinstalls the system"""
+    path = jeffos.OS_PATH+"../"
+    os.system(f"cd {path} && make install")
+
+if __name__ == "__main__":
+    main()
