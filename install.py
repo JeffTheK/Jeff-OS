@@ -1,6 +1,7 @@
 import os
 import shutil
 import sys
+import click
 from datetime import datetime
 from shutil import ignore_patterns
 
@@ -24,6 +25,22 @@ def install_default_apps():
         shutil.rmtree("Jeff-OS/sys/bin/")
     shutil.copytree("src/bin", "Jeff-OS/sys/bin", ignore=ignore_patterns('*.c', '*.h'))
 
+def install_default_libraries():
+    print(OK+"installing libraries")
+
+    if os.path.isdir("Jeff-OS/sys/lib/"):
+        shutil.rmtree("Jeff-OS/sys/lib/")
+
+    if os.path.isfile("src/lib/jeffos/jeffos.cfg.py"):
+        os.remove("src/lib/jeffos/jeffos.cfg.py")
+    
+    cfg = open("src/lib/jeffos/jeffos.cfg.py", "x")
+    cfg.write(os.getcwd() + "/Jeff-OS")
+    cfg.close()
+    shutil.copytree("src/lib", "Jeff-OS/sys/lib")
+    os.system("cd Jeff-OS/sys/lib/ && pip install .")
+    os.remove("src/lib/jeffos/jeffos.cfg.py")
+
 def install():
     if os.path.isdir("Jeff-OS"):
         print(OK+"Jeff-OS is already installed. Removing old installation")
@@ -37,14 +54,8 @@ def install():
 
     install_default_apps()
     
-    print(OK+"installing libraries")
-    cfg = open("src/lib/jeffos/jeffos.cfg.py", "x")
-    cfg.write(os.getcwd() + "/Jeff-OS")
-    cfg.close()
-    shutil.copytree("src/lib", "Jeff-OS/sys/lib")
-    os.system("cd Jeff-OS/sys/lib/ && pip install .")
-    os.remove("src/lib/jeffos/jeffos.cfg.py")
-
+    install_default_libraries()
+    
     print(OK+"installing vars")
     os.mkdir("Jeff-OS/sys/var")
     # sys.cfg
@@ -78,8 +89,17 @@ def install():
     os.mkdir("Jeff-OS/sys/docs/")
     shutil.copy("readme.md", "Jeff-OS/sys/docs/readme.md")
 
-if __name__ == "__main__":
+@click.command()
+@click.option("-bin", is_flag=True)
+@click.option("-lib", is_flag=True)
+def main(bin, lib):
     if len(sys.argv) <= 1:
         install()
-    elif sys.argv[1] == "-bin":
-        install_default_apps()
+    else:
+        if bin:
+            install_default_apps()
+        if lib:
+            install_default_libraries()
+
+if __name__ == "__main__":
+    main()
