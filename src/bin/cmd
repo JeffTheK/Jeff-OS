@@ -27,7 +27,6 @@ def parse_cfg():
     text = "".join(lines)
 
     commands = re.split(r";\n", text)
-    commands.remove("")
     for cm in commands:
         tokens = re.findall(r"\w+|=|'.*'", cm)
         if tokens[0] == "alias":
@@ -35,7 +34,6 @@ def parse_cfg():
             tokens[3] = tokens[3].replace("'", '')
             _aliases[tokens[1]] = tokens[3]
 
-    print(_aliases)
     cfg.close()
 
 def handle_signal(signum, frame):
