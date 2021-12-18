@@ -12,11 +12,12 @@ help="reinstalls the /sys/lib/ libraries")
 def main(bin, lib):
     """reinstalls the system"""
     path = jeffos.OS_PATH+"../"
-    args = ""
+    args = []
     if bin:
-        args += "-bin"
+        args.append("-bin")
     if lib:
-        args += "-lib"
+        args.append("-lib")
+    args = " ".join(args)
     os.system(f"cd {path} && python install.py {args}")
 
 
