@@ -1,0 +1,11 @@
+#!/usr/bin/env python3
+
+import click
+
+@click.command()
+def main():
+    """exception test app, system shouldn't crash"""
+    raise Exception("test")
+
+if __name__ == "__main__":
+    main()
