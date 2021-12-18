@@ -1,0 +1,17 @@
+#!/usr/bin/env python3
+
+import click
+import jeffos
+
+@click.command()
+@click.argument("name")
+@click.argument("definition", type=str)
+def main(name, definition):
+    """creates a new alias"""
+    cmd_cfg = open(jeffos.OS_PATH+"sys/var/cmd.cfg", 'a')
+    string = f"\nalias {name}='{definition}';"
+    cmd_cfg.write(string)
+    cmd_cfg.close()
+
+if __name__ == "__main__":
+    main()
