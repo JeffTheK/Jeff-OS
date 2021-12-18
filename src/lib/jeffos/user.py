@@ -1,6 +1,10 @@
 from .__init__ import *
+from .color import ERR
 
 def get_current_user() -> str:
+    if not os.path.isfile(OS_PATH+"sys/var/usr.cfg"):
+        print(ERR+"usr.cfg not found")
+        return "ERROR"
     usr_cfg = open(OS_PATH+"sys/var/usr.cfg", 'r')
     current_user = usr_cfg.readlines()[0].strip()
     usr_cfg.close()
