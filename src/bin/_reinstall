@@ -4,10 +4,17 @@ import os
 import jeffos
 import click
 
-def main():
+@click.command()
+@click.option('-bin', default=False, is_flag=True,
+help="reinstalls only the /sys/bin/ binaries")
+def main(bin):
     """reinstalls the system"""
     path = jeffos.OS_PATH+"../"
-    os.system(f"cd {path} && make install")
+    args = ""
+    if bin:
+        args += "-bin"
+    os.system(f"cd {path} && python install.py {args}")
+
 
 if __name__ == "__main__":
     main()

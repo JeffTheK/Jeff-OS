@@ -20,6 +20,8 @@ except:
 
 def install_default_apps():
     print(OK+"installing default programs")
+    if os.path.isdir("Jeff-OS/sys/bin/"):
+        shutil.rmtree("Jeff-OS/sys/bin/")
     shutil.copytree("src/bin", "Jeff-OS/sys/bin", ignore=ignore_patterns('*.c', '*.h'))
 
 def install():
@@ -79,3 +81,5 @@ def install():
 if __name__ == "__main__":
     if len(sys.argv) <= 1:
         install()
+    elif sys.argv[1] == "-bin":
+        install_default_apps()
