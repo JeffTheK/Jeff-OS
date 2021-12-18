@@ -58,8 +58,14 @@ def install():
     sys_cfg.close()
     
     # cmd.cfg
+    shutil.copy("src/var/cmd.cfg", "Jeff-OS/sys/var/cmd.cfg")
+    cmd_cfg = open("Jeff-OS/sys/var/cmd.cfg", 'r')
+    lines = cmd_cfg.readlines()
+    lines.insert(0, actual_os_dir+"\n")
+    cmd_cfg.close()
+
     cmd_cfg = open("Jeff-OS/sys/var/cmd.cfg", 'w')
-    cmd_cfg.write(actual_os_dir)
+    cmd_cfg.writelines(lines)
     cmd_cfg.close()
 
     # booting and restarting

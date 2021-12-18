@@ -5,18 +5,38 @@ import sys
 import jeffos
 import subprocess
 import signal
+import re
 from datetime import datetime
 from jeffos.color import colored, OK
 from collections import Counter
 
-_aliases = {
-    "move": "mv",
-    "dir": "ls"
-}
+_aliases = { }
 
 _background_processes = {}
 
 _is_running = True
+
+def parse_cfg():
+    print(OK+"parsing cmd.cfg")
+    global _aliases
+
+    tokens = []
+    cfg = open(jeffos.OS_PATH+"sys/var/cmd.cfg", 'r')
+    lines = cfg.readlines()
+    lines.pop(0)
+    text = "".join(lines)
+
+    commands = re.split(r";\n", text)
+    commands.remove("")
+    for cm in commands:
+        tokens = re.findall(r"\w+|=|'.*'", cm)
+        if tokens[0] == "alias":
+            print("found alias")
+            tokens[3] = tokens[3].replace("'", '')
+            _aliases[tokens[1]] = tokens[3]
+
+    print(_aliases)
+    cfg.close()
 
 def handle_signal(signum, frame):
     global _is_running
@@ -100,6 +120,7 @@ def exit():
 
 def main():
     print(OK+"launching command line")
+    parse_cfg()
     print("you are "+colored(jeffos.get_current_user(), "cyan"))
     print("type help for basic info")
 
