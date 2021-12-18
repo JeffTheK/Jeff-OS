@@ -30,7 +30,6 @@ def parse_cfg():
     for cm in commands:
         tokens = re.findall(r"\w+|=|'.*'", cm)
         if tokens[0] == "alias":
-            print("found alias")
             tokens[3] = tokens[3].replace("'", '')
             _aliases[tokens[1]] = tokens[3]
 
