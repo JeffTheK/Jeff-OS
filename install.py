@@ -81,6 +81,9 @@ def install():
     cmd_cfg.writelines(lines)
     cmd_cfg.close()
 
+    # /dat/
+    shutil.copytree("src/dat/", "Jeff-OS/sys/dat/")
+
     # booting and restarting
     print(OK+"copying booting files")
     shutil.copy("src/boot.py", "Jeff-OS/boot.py")
