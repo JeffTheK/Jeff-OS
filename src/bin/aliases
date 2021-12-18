@@ -1,0 +1,17 @@
+#!/usr/bin/env python3
+
+import click
+import jeffos
+
+@click.command()
+def main():
+    """lists all cmd aliases"""
+    cmd_cfg = open(jeffos.OS_PATH+"sys/var/cmd.cfg", 'r')
+    lines = cmd_cfg.readlines()
+    lines.pop(0)
+    aliases = "".join(lines)
+    print(aliases)
+    cmd_cfg.close()
+
+if __name__ == "__main__":
+    main()
