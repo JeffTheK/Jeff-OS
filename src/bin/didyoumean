@@ -1,0 +1,32 @@
+#!/usr/bin/env python3
+
+import click
+import jeffos
+import os
+import sys
+from jeffos.did_you_mean import did_you_mean
+
+@click.command()
+@click.argument("word")
+@click.option("-d", "--debug", is_flag=True, default=False)
+def main(word, debug):
+    """jeffos.did_you_mean() test"""
+
+    oirig_stdout = sys.stdout
+    if not debug:
+        sys.stdout = open(os.devnull, 'w')
+
+    words_limit = 10000
+
+    print("scanning file")
+    file = open(jeffos.OS_PATH+"sys/dat/en_words.txt")
+    words = []
+    for line in file.readlines():
+        words.append(line[0:-2])
+    print("done")
+    sys.stdout = oirig_stdout
+    did_you_mean(word, words)
+    file.close()
+
+if __name__ == "__main__":
+    main()
