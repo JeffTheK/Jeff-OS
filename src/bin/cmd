@@ -6,6 +6,8 @@ import jeffos
 import subprocess
 import signal
 import re
+import tty
+import termios
 from datetime import datetime
 from jeffos.color import colored, OK
 
@@ -14,6 +16,9 @@ _aliases = { }
 _background_processes = {}
 
 _is_running = True
+
+fd = sys.stdin.fileno()
+_tty_original_settings = termios.tcgetattr(fd)
 
 def parse_cfg():
     print(OK+"parsing cmd.cfg")
@@ -109,6 +114,55 @@ def reboot():
     exit()
     subprocess.call(jeffos.OS_PATH+"boot.py")
 
+_input_str = ""
+
+def on_enter(inp, history):
+    tty.tcsetattr(fd, termios.TCSADRAIN, _tty_original_settings)
+
+    inp = inp.strip()
+    if inp == "":
+        return
+    elif inp == "quit" or inp == "exit":
+        exit()
+    elif inp == "reboot":
+        reboot()
+    else:
+        parse_input(inp, history)
+
+    tty.setraw(fd)
+
+_cursor_x = 0
+
+def read_stdin(prompt, history):
+    global _input_str
+    global _cursor_x
+
+    c = sys.stdin.read(1)
+    if c == '\033': # holds several bytes
+        sys.stdin.read(1)
+        b = sys.stdin.read(1)
+        if b == 'A': # arrow up
+            print("ARROW_UP")
+    elif c == '\x0d': # enter
+        sys.stdout.write("\033[100D")
+        print()
+        on_enter(_input_str, history)
+        sys.stdout.write("\033[100D")
+        _input_str = ""
+        print(prompt, end="")
+        _cursor_x = len(jeffos.get_current_user()+"@"+"cmd>")
+    elif c == '\x7f': # backspace
+        if _cursor_x <= len(jeffos.get_current_user()+"@"+"cmd>"):
+            return
+        _input_str = _input_str[0:-2]
+        _cursor_x -= 1
+        sys.stdout.write('\b \b')
+    else:
+        _cursor_x += 1
+        _input_str += c
+        sys.stdout.write(c)
+    sys.stdout.flush()
+
 def main():
     print(OK+"launching command line")
     parse_cfg()
@@ -120,19 +174,25 @@ def main():
     history = open(jeffos.OS_PATH+"usr/cmd_history.txt", "a")
     history.write("starting session "+datetime.now().strftime("%d-%m-%Y %H:%M")+"\n")
 
+    tty.setraw(sys.stdin.fileno())
+
+    prompt = colored(jeffos.get_current_user(), "red")+"@"+colored("cmd>", "yellow")
+    global _cursor_x
+    _cursor_x = len(jeffos.get_current_user()+"@"+"cmd>")
+    print(prompt, end="")
     global _is_running
     while _is_running:
-        prompt = colored(jeffos.get_current_user(), "red")+"@"+colored("cmd>", "yellow")
-        inp = input(prompt)
-        inp = inp.strip()
-        if inp == "":
-            continue
-        elif inp == "quit" or inp == "exit":
-            exit()
-        elif inp == "reboot":
-            reboot()
-        else:
-            parse_input(inp, history)
+        read_stdin(prompt, history)
+        #inp = input(prompt)
+        #inp = inp.strip()
+        #if inp == "":
+        #    continue
+        #elif inp == "quit" or inp == "exit":
+        #    exit()
+        #elif inp == "reboot":
+        #    reboot()
+        #else:
+        #    parse_input(inp, history)
 
     history.close()
 
