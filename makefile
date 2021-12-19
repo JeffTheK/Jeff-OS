@@ -1,5 +1,5 @@
 compile:
-	gcc src/bin/python.c -o src/bin/python
+	python compile.py
 
 install: compile
 	pip install -r requirements.txt
