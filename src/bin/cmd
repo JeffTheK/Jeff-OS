@@ -12,6 +12,8 @@ from jeffos.color import colored, OK, WARN
 
 _raw_input_mode = False
 
+HISTORY_FILE_PATH = jeffos.OS_PATH+"usr/cmd_history.txt"
+
 if platform.system() == "Linux":
     print(OK+"using raw input mode")
     _raw_input_mode = True
@@ -93,7 +95,7 @@ def did_you_mean(app_name):
     files = os.listdir(apps_path)
     jeffos.did_you_mean(app_name, files)
 
-def parse_input(i, history):
+def parse_input(i):
     if not _is_running:
         return
 
@@ -109,7 +111,9 @@ def parse_input(i, history):
         app_name = _aliases[i]
     args = " ".join(args)
 
+    history = open(HISTORY_FILE_PATH, 'a')
     history.write(i+"\n")
+    history.close()
 
     if os.path.isfile(jeffos.OS_PATH+"/sys/bin/"+app_name):
         if len(args) != 0 and args[-1] == "&":
@@ -137,7 +141,7 @@ def reboot():
 
 _input_str = ""
 
-def on_enter(inp, history):
+def on_enter(inp):
     if _raw_input_mode:
         go_into_standart_input_mode()
 
@@ -149,14 +153,14 @@ def on_enter(inp, history):
     elif inp == "reboot":
         reboot()
     else:
-        parse_input(inp, history)
+        parse_input(inp)
 
     if _raw_input_mode:
         go_into_raw_input_mode()
 
 _cursor_x = 0
 
-def read_stdin(prompt, history):
+def read_stdin(prompt):
     global _input_str
     global _cursor_x
 
@@ -179,7 +183,7 @@ def read_stdin(prompt, history):
     elif c == '\x0d': # enter
         sys.stdout.write("\033[100D")
         print()
-        on_enter(_input_str, history)
+        on_enter(_input_str)
         sys.stdout.write("\033[100D")
         _input_str = ""
         print(prompt, end="")
@@ -204,8 +208,9 @@ def main():
 
     os.chdir(jeffos.OS_PATH)
 
-    history = open(jeffos.OS_PATH+"usr/cmd_history.txt", "a")
+    history = open(HISTORY_FILE_PATH, 'a')
     history.write("starting session "+datetime.now().strftime("%d-%m-%Y %H:%M")+"\n")
+    history.close()
 
     if _raw_input_mode:
         go_into_raw_input_mode()
@@ -217,11 +222,9 @@ def main():
     global _is_running
     while _is_running:
         if _raw_input_mode:
-            read_stdin(prompt, history)
+            read_stdin(prompt)
         else:
-            on_enter(input(prompt), history)
-
-    history.close()
+            on_enter(input(prompt))
 
 if __name__ == "__main__":
     main()
