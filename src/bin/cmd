@@ -6,10 +6,19 @@ import jeffos
 import subprocess
 import signal
 import re
-import tty
-import termios
+import platform
 from datetime import datetime
-from jeffos.color import colored, OK
+from jeffos.color import colored, OK, WARN
+
+_raw_input_mode = False
+
+if platform.system() == "Linux":
+    print(OK+"using raw input mode")
+    _raw_input_mode = True
+    import tty
+    import termios
+else:
+    print(WARN+"your system doesn't support raw input mode. Using standart input")
 
 _aliases = { }
 
@@ -17,13 +26,15 @@ _background_processes = {}
 
 _is_running = True
 
-_tty_original_settings = termios.tcgetattr(fd)
+if _raw_input_mode:
+    _tty_original_settings = termios.tcgetattr(sys.stdin.fileno())
 
-def go_into_standart_input_mode():
-    tty.tcsetattr(fd, termios.TCSADRAIN, _tty_original_settings)
+    def go_into_standart_input_mode():
+        global fd
+        tty.tcsetattr(sys.stdin.fileno(), termios.TCSADRAIN, _tty_original_settings)
 
-def go_into_raw_input_mode():
-    tty.setraw(sys.stdin.fileno())
+    def go_into_raw_input_mode():
+        tty.setraw(sys.stdin.fileno())
 
 def parse_cfg():
     print(OK+"parsing cmd.cfg")
@@ -122,7 +133,8 @@ def reboot():
 _input_str = ""
 
 def on_enter(inp, history):
-    go_into_standart_input_mode()
+    if _raw_input_mode:
+        go_into_standart_input_mode()
 
     inp = inp.strip()
     if inp == "":
@@ -134,7 +146,8 @@ def on_enter(inp, history):
     else:
         parse_input(inp, history)
 
-    go_into_raw_input_mode()
+    if _raw_input_mode:
+        go_into_raw_input_mode()
 
 _cursor_x = 0
 
@@ -179,7 +192,8 @@ def main():
     history = open(jeffos.OS_PATH+"usr/cmd_history.txt", "a")
     history.write("starting session "+datetime.now().strftime("%d-%m-%Y %H:%M")+"\n")
 
-    go_into_standart_input_mode()
+    if _raw_input_mode:
+        go_into_raw_input_mode()
 
     prompt = colored(jeffos.get_current_user(), "red")+"@"+colored("cmd>", "yellow")
     global _cursor_x
@@ -187,7 +201,10 @@ def main():
     print(prompt, end="")
     global _is_running
     while _is_running:
-        read_stdin(prompt, history)
+        if _raw_input_mode:
+            read_stdin(prompt, history)
+        else:
+            on_enter(input(prompt), history)
 
     history.close()
 
